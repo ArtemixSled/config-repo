@@ -27,3 +27,12 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info  # или '*' для всех
+  endpoint:
+    health:
+      show-details: always  # если нужно видеть подробности
