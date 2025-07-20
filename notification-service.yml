@@ -1,19 +1,11 @@
-# notification-service.yml в вашем Config Server’е
+# notification-service.yml (в вашем Config Server-е, GitHub)
 spring:
   application:
     name: notification-service
 
-  mail:                        # ← было просто "mail:", стало "spring.mail"
-    host: smtp.example.com
-    port: 587
-    username: user
-    password: pass
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+  mail:
+    host: localhost       # MailHog SMTP
+    port: 1025
 
   kafka:
     consumer:
@@ -28,8 +20,8 @@ spring:
 eureka:
   instance:
     hostname: localhost
-    prefer-ip-address: true
     ip-address: 127.0.0.1
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
