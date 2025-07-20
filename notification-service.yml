@@ -1,4 +1,4 @@
-# notification-service.yml (в вашем Config Server’е)
+# notification-service.yml (в Config Server’е)
 spring:
   application:
     name: notification-service
@@ -39,7 +39,11 @@ eureka:
 management:
   endpoints:
     web:
-      exposure: "*"
+      exposure:
+        include:
+          - health
+          - info
+          - env
   endpoint:
     health:
       show-details: always
