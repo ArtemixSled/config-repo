@@ -1,40 +1,35 @@
-# ---- notification-service.yml в вашем Config Server'е ----
-
+# notification-service.yml (в вашем Config Server’е)
 spring:
-  config:
-    import: optional:configserver:http://localhost:8888
   application:
     name: notification-service
 
-  mail:
-    host: smtp.example.com
-    port: 587
-    username: user
-    password: pass
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+mail:
+  host: smtp.example.com
+  port: 587
+  username: user
+  password: pass
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
 
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      group-id: notification-service-group
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
+kafka:
+  consumer:
+    bootstrap-servers: localhost:9092
+    group-id: notification-service-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "*"
 
 eureka:
   instance:
-    # вместо host.docker.internal
     hostname: localhost
     prefer-ip-address: true
     ip-address: 127.0.0.1
-
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
@@ -44,8 +39,7 @@ eureka:
 management:
   endpoints:
     web:
-      exposure:
-        include: health,info  # или '*' для всех
+      exposure: "*"
   endpoint:
     health:
       show-details: always
