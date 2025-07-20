@@ -1,29 +1,29 @@
-# notification-service.yml (в Config Server’е)
+# notification-service.yml в вашем Config Server’е
 spring:
   application:
     name: notification-service
 
-mail:
-  host: smtp.example.com
-  port: 587
-  username: user
-  password: pass
-  properties:
-    mail:
-      smtp:
-        auth: true
-        starttls:
-          enable: true
-
-kafka:
-  consumer:
-    bootstrap-servers: localhost:9092
-    group-id: notification-service-group
-    auto-offset-reset: earliest
-    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  mail:                        # ← было просто "mail:", стало "spring.mail"
+    host: smtp.example.com
+    port: 587
+    username: user
+    password: pass
     properties:
-      spring.json.trusted.packages: "*"
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
 
 eureka:
   instance:
