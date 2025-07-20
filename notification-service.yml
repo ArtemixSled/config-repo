@@ -45,7 +45,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,env
+        include: health,info  # или '*' для всех
   endpoint:
     health:
       show-details: always
