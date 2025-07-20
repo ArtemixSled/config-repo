@@ -1,4 +1,11 @@
+# ---- notification-service.yml в вашем Config Server'е ----
+
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: notification-service
+
   mail:
     host: smtp.example.com
     port: 587
@@ -22,14 +29,17 @@ spring:
         spring.json.trusted.packages: "*"
 
 eureka:
+  instance:
+    # вместо host.docker.internal
+    hostname: localhost
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
-  instance:
-    prefer-ip-address: true
-    ip-address: 127.0.0.1
 
 management:
   endpoints:
@@ -38,4 +48,4 @@ management:
         include: health,info,env
   endpoint:
     health:
-      show-details: always  # если нужно видеть подробности
+      show-details: always
