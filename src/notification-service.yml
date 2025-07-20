@@ -1,11 +1,12 @@
-# notification-service.yml
-kafka:
-  bootstrap-servers: kafka.example.com:9092
-  topic: notifications
-
 spring:
   mail:
     host: smtp.example.com
     port: 587
     username: user
     password: pass
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
